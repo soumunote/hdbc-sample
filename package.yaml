@@ -1,0 +1,56 @@
+name:                hdbc-sample
+version:             0.1.0.0
+github:              "soumunote/Samples"
+license:             MIT
+author:              "soumunote"
+maintainer:          "soumunote@gmail.com"
+copyright:           "2020 soumunote"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/hdbc-sample#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- HDBC
+- HDBC-odbc
+- file-embed
+- bytestring
+- unicode-show
+
+library:
+  source-dirs: src
+
+executables:
+  hdbc-sample-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -package containers # Data.Map.Strictの為
+    - -package utf8-string
+    dependencies:
+    - interpolate
+      #- hdbc-sample
+
+tests:
+  hdbc-sample-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hdbc-sample
